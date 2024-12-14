@@ -1,0 +1,25 @@
+# TODO: Setup infrastructure for database (Postgresql)
+
+# -- Project name (Can be referenced by ${COMPOSE_PROJECT_NAME})
+name: ${APP_NAME}
+
+# -- App definition
+services:
+  db:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: postgres
+    restart: always
+    ports:
+      - ${POSTGRES_HOST_PORT}:${POSTGRES_CONTAINER_PORT}
+    volumes:
+      - db-data:/var/lib/postgresql/data    
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+# -- Persistent data stores
+# Using 'local' driver for storing data locally on the host
+volumes:
+  db-data:
+    name: db-data
+    driver: local
