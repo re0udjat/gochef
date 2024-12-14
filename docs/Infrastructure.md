@@ -28,7 +28,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose version
 ```
 
-# Setup Infrastructure
+## Setup Infrastructure for Gochef Application
 
 **Step 1:** From root project directory, startup application by running:
 
