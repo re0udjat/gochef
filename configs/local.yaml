@@ -1,0 +1,16 @@
+# local, dev, uat, stag, prod
+env: "local"
+
+http_server:
+  host: localhost
+  port: 8080
+
+  # The total time from when the request starts until it finishes, regardless
+  # of whether data is actively being sent.
+  timeout: 3s
+
+  # The amount of time that a connection can remain open without any activity
+  # between the client-side and the server-side. If there is no data exchange
+  # between the client-side and the server-side within this time period, the
+  # connection is considered idle and may be terminated by the server-side
+  idle_timeout: 60s
