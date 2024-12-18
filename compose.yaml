@@ -1,21 +1,29 @@
 # TODO: Setup infrastructure for database (Postgresql)
 
 # -- Project name (Can be referenced by ${COMPOSE_PROJECT_NAME})
-name: ${APP_NAME}
+name: gochef
 
 # -- App definition
 services:
+  gochef-market:
+    build:
+      context: .
+      dockerfile: ./build/docker/market/Dockerfile
+    container_name: gochef-market
+    restart: always
+    ports:
+      - 8080:8080
+    env_file: ./cmd/market/.env.market.local
+
   db:
-    image: postgres:${POSTGRES_VERSION}
+    image: postgres:17
     container_name: postgres
     restart: always
     ports:
-      - ${POSTGRES_HOST_PORT}:${POSTGRES_CONTAINER_PORT}
+      - 55432:5432
     volumes:
       - db-data:/var/lib/postgresql/data    
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    env_file: ./.env.compose.local
 
 # -- Persistent data stores
 # Using 'local' driver for storing data locally on the host
